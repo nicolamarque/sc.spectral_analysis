@@ -1,0 +1,115 @@
+%-----------------------------------------------------------
+\documentclass[a4paper,final,authoryeartwoside,11pt]{elsarticle}
+\usepackage[applemac]{inputenc}
+%\usepackage[dvips]{graphicx}
+\usepackage{palatino,mathpazo,amssymb,amsmath,booktabs,fancybox,upgreek}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+%-----------------------------------------------------------
+
+
+%-----------------------------------------------------------
+% Marges (mais o� est Omer ???)
+\hoffset        = -5.4mm        
+\voffset       = -7.4mm
+\oddsidemargin  =   .5cm        
+\evensidemargin=   .5cm
+\topmargin    = 0cm
+\textwidth      = 16cm  
+\textheight    = 23cm
+%-----------------------------------------------------------
+
+
+%-----------------------------------------------------------
+% Longueurs 
+\renewcommand{\baselinestretch}{1.1}
+\setlength{\parskip   }{3mm}
+\setlength{\parindent }{5mm}
+\setlength{\fboxsep   }{2mm}
+\setlength{\shadowsize}{.5mm}
+\cornersize*{5mm}
+\numberwithin{equation}{section}
+%\renewcommand{\theequation}{\thesection.\arabic{equation}}
+%-----------------------------------------------------------
+
+
+%-----------------------------------------------------------
+% "Defs math"
+\newcommand{\ddt}[1]{\frac{\partial #1}{\partial t}}
+\newcommand{\ddx}[1]{\frac{\partial #1}{\partial x}}
+\newcommand{\dddt}[1]{\frac{\partial^2 #1}{\partial t^2}}
+\newcommand{\ddddt}[1]{\frac{\partial^3 #1}{\partial t^3}}
+\newcommand{\dddddt}[1]{\frac{\partial^4 #1}{\partial t^4}}
+\newcommand{\dddx}[1]{\frac{\partial^2 #1}{\partial x^2}}
+\newcommand{\ddddx}[1]{\frac{\partial^3 #1}{\partial x^3}}
+\newcommand{\dddddx}[1]{\frac{\partial^4 #1}{\partial x^4}}
+\newcommand{\ddddddx}[1]{\frac{\partial^5 #1}{\partial x^5}}
+\newcommand{\ddy}[1]{\frac{\partial #1}{\partial y}}
+\newcommand{\ddz}[1]{\frac{\partial #1}{\partial z}}
+\newcommand{\ddi}[1]{\frac{\partial #1}{\partial x_i}}
+\newcommand{\dddi}[1]{\frac{\partial^2 #1}{\partial x_i \partial x_i}}
+\newcommand{\ddj}[1]{\frac{\partial #1}{\partial x_j}}
+\newcommand{\ddk}[1]{\frac{\partial #1}{\partial x_k}}
+\newcommand{\ddn}[1]{\frac{\partial #1}{\partial n}}
+\newcommand{\mydp}[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand{\bsa}{\boldsymbol{a}}
+\newcommand{\bsq}{\boldsymbol{q}}
+\newcommand{\bsu}{\boldsymbol{u}}
+\newcommand{\bsx}{\boldsymbol{x}}
+%-----------------------------------------------------------
+
+
+%-----------------------------------------------------------
+% "Defs texte"
+\renewcommand{\emph}[1]{{\sl #1}}
+%-----------------------------------------------------------
+
+
+%-----------------------------------------------------------
+% Journaux
+\def\jfm{ Journal of Fluid Mechanics }
+\def\jcp{ Journal of Computational Physics }
+\def\cst{ Combustion, Science and Technology }
+\def\cf{ Combustion and Flame }
+\def\pecs{ Progress in Energy and Combustion Science }
+\def\pf{ Physics of Fluids }
+\def\jsv{Journal of Sound and Vibration }
+\def\jars{Journal of the American Rocket Society }
+\def\cfl{Computers and Fluids }
+\def\jpp{Journal of Propulsion and Power }
+\def\cpam{Communications in Pure Applied Mathematics }
+\def\ftac{Flow, Turbulence and Combustion }
+\def\eb{Ercoftac Bulletin }
+\def\ijnmf{International Journal for Numerical Methods in Fluids }
+\def\jpIII{J. Phys. III }
+\def\ijcfd{International Journal of Computational Fluid Dynamics }
+\def\as{Astron. Astrophys. }
+\def\aj{AIAA Journal }
+\def\aiaaj{A.I.A.A. Journal }
+\def\aichej{A.I.Ch.E. Journal }
+\def\JEGTP{ASME J. Eng. Gas Turbines and Power }
+\def\jt{Journal of Turbulence }
+\def\ces{Chemical Engineering Science }
+\def\cjce{Chinese Journal of Chemical Engineering }
+\def\cnsns{Communications in Nonlinear Science and Numerical Simulation }
+\def\mwr{Monthly Weather Review }
+\def\aam{Advances in Applied Mechanics }
+\def\cerd{Chemical Engineering Research and Design }
+\def\mman{ESAIM: Mathematical Modelling and Numerical Analysis }
+\def\ijmf{International Journal of Multiphase Flows }
+\def\iecr{Industrial and Engineering Chemistry Research }
+\def\tcjce{The Canadian Journal of Chemical Engineering }
+\def\cmame{Computer Methods in Applied Mechanics and Engineering }
+\def\annr{Annual Review of Fluid Mechanics }
+\def\siam{SIAM Review }
+\def\moc{Mathematics of Computation }
+%--------------------------------------------------------------------------------------------------
+
+
+%---------------------------------
+% Utiles pour certaines classes comme elsarticle.cls
+\journal{CERFACS Report}
+%---------------------------------
+
+
