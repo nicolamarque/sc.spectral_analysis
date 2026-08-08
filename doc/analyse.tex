@@ -1,11 +1,12 @@
 % Les caracteristiques du document sont definies dans definition.tex
 \input{./definition.tex} % adapter chemin
 
+
 % Titre
 \title {Spectral analysis to study full discretizations of the convection equation}
 
 % Date
-\date {January 2011}
+\date {August 2026}
 
 % Auteur(s)
 \author{Nicolas Lamarque}
@@ -37,7 +38,7 @@
 	\begin{center}
 	\bf SPECTRAL ANALYSIS TO STUDY FULL DISCRETIZATIONS OF THE CONVECTION EQUATION
 
-	\bf Technical Report :  NR-2011-01
+	\bf Technical Report :  NR-2026-01
 	\end{center}
 
 	\rule{140mm}{0.7pt}
@@ -58,7 +59,7 @@
 		\begin{tabular}{ll}
 		%\hline
 			{\bf \sc Author:}                   &  {\bf Nicolas LAMARQUE} \\
-			{\bf \sc Date:}                        & {\bf January 2011}     \\
+			{\bf \sc Date:}                        & {\bf August 2026}     \\
 %\hline
 		\end{tabular}
 		\end{table}
@@ -120,7 +121,7 @@ $$ u(\bsx,t) = u_0(\bsx - \bsa t),$$
 
 \noindent where $u_0(\bsx) = u(\bsx,0)$ is the initial solution. \\
 
-\noindent In this document, we choose $d=1$ and $a>0$ for simplicity. The concepts, presented afterthen, can be generalized to $d>1$, but this introduces new difficulties like anisotropy, which will be mentionned elsewhere. Besides, the discretization of $\Omega$, noted $\mathcal{T}_h$, is made using regular elements, which leads to the mesh size $h = cst$. We note $U^n_j$ the solution of the discretization of Eq.~(\ref{eq:conv_lin}), at the discrete time $t^n$ and associated with node (or control volume) located at $x_j$. It approximates $u(x_j,t^n)$.The LW differencing scheme is written\cite{Leveque:2002}:
+\noindent In this document, we choose $d=1$ and $a>0$ for simplicity. The concepts, presented afterthen, can be generalized to $d>1$, but this introduces new difficulties like anisotropy, which will be mentionned elsewhere. Besides, the discretization of $\Omega$, noted $\mathcal{T}_h$, is made using regular elements, which leads to the mesh size $h = cst$. We note $U^n_j$ the solution of the discretization of Eq.~(\ref{eq:conv_lin}), at the discrete time $t^n = nk$, where $k$ is the time step, and associated with node (or control volume) located at $x_j = jh$. It approximates $u(x_j,t^n)$.The LW differencing scheme is written\cite{Leveque:2002}:
 \begin{equation}
 \label{eq:LW}
 U_{j}^{n+1} = U_{j}^{n} - \frac{1}{2} c \left(U_{j+1}^{n} - U_{j-1}^{n}\right) + \frac{1}{2} c^2 \left(U_{j+1}^{n} - 2 U_{j}^{n} + U_{j-1}^{n}\right),
@@ -137,9 +138,9 @@ Z U_{j}^{n}  = \left\{ I - \frac{c}{2} \left(E - E^{-1}\right) + \frac{1}{2} c^2
 $$U_{j}^{n} = I U_{j}^{n}, \quad\quad  U_{j+1}^{n} = E U_{j}^{n},  \quad\quad U_{j}^{n+1} = Z U_{j}^{n}.$$
 
 \noindent The CFL (Courant-Friedrichs-Lewy) number $c$ , is used as a parameter to study the stability of the convection schemes and is defined by:
-$$c = \frac{a k}{h} \, ,$$
+$$c = \frac{a k}{h} \, .$$
 
-\noindent where $k$ the time step. The LW scheme is second-order accurate both in space and time, and is $L^2 \ \mathrm{stable}$ provided $c \leq 1$ \cite{Hirsch:1988}. In the present document, we write: $\i = \sqrt{-1}$.
+\noindent The LW scheme is second-order accurate both in space and time, and is $L^2 \ \mathrm{stable}$ provided $c \leq 1$ \cite{Hirsch:1988}. In the present document, we write: $\i = \sqrt{-1}$.
 %--------------------------------------------------------------------------------------------------
 
 
@@ -148,10 +149,10 @@ $$c = \frac{a k}{h} \, ,$$
 %==============================
 \section{Dispersion relations and definitions \label{sec:disper}}
 %==============================
-Equation (\ref{eq:conv_lin}) admits non-trivial plane wave solutions of the form:
+\noindent Equation (\ref{eq:conv_lin}) admits non-trivial plane-wave solutions of the form:
 \begin{equation}
 \label{eq:plane_wave}
-U=\exp(\i \xi x - \i \omega t),
+u(x, t) = \exp(\i \xi x - \i \omega t) \, ,
 \end{equation}
 
 
@@ -161,21 +162,28 @@ U=\exp(\i \xi x - \i \omega t),
 \omega = \xi \, a,
 \end{equation}
 
-\noindent is respected \cite{Lighthill:1978,Trefethen:1996}. Identically, a discrete approximation of Eq.~(\ref{eq:conv_lin}) admits plane wave solutions (\ref{eq:plane_wave}). Therefore, modified dispersion relations can be expressed. To do so, Eq.~(\ref{eq:plane_wave}) is injected in the difference schemes to write an expression, which links $\xi$ and $\omega$. 
+\noindent is respected \cite{Lighthill:1978,Trefethen:1996}. Identically, a discrete approximation of Eq.~(\ref{eq:conv_lin}) admits plane-wave solutions of the form:
+\begin{equation}
+\label{eq:disc_plane_wave}
+U_j^n = \exp(\i \xi j h - \i \omega n k) \, ,
+\end{equation}
+
+Therefore, modified dispersion relations can be expressed. Injecting Eq.~(\ref{eq:disc_plane_wave}) in the difference schemes enables to write an expression, which links $\xi$ and $\omega$.
 
 \vskip8mm
 
 \begin{example}
-The dispersion relation of the LW scheme is:
+The dispersion relation of the LW scheme can be obtained from:
 \begin{equation}
-\label{eq:dispersion_relation_LW}
+\label{eq:tan_dispersion_relation_LW}
 \tan{(\omega k)} = \frac{c \sin{(\xi h)}}{1- c^2 \left\{1-\cos{(\xi h)}\right\}}.
 \end{equation}
 \end{example}
 
 \vskip8mm
 
-\noindent As it can be seen with the LW scheme, the dispersion relation related to a numerical scheme is a good approximation of Eq.~(\ref{eq:DR}) when $\xi,\omega\rightarrow 0$. On the other hand, it is also a formula involving trigonometric functions. Thus, the relation between $\xi$ and $\omega$ is no more linear and the scheme is said to be \emph{dispersive}. Indeed, essential propagation properties will depend on the pulsation or the wavenumber. 
+\noindent As explained in \cite{Trefethen:1982}, as the grid is discrete, the dispersion relations like Eq.~(\ref{eq:tan_dispersion_relation_LW}) are multipled-valued and $2\pi$-periodic in $\xi h$ and $\omega k$. In practice and when needed, the relevant branch is chosen by continuity with the low-frequency limit $\omega k \sim c\,\xi h$. 
+From Eq.~(\ref{eq:tan_dispersion_relation_LW}), it can be seen with the LW scheme, the dispersion relation related to a numerical scheme is a good approximation of Eq.~(\ref{eq:DR}) when $\xi,\omega\rightarrow 0$. On the other hand, it is also a formula involving trigonometric functions. Thus, the relation between $\xi$ and $\omega$ is no more linear and the scheme is said to be \emph{dispersive}. Indeed, essential propagation properties will depend on the pulsation or the wavenumber. 
 
 \noindent The \emph{phase velocity} is the propagation speed of wave crests within a wave and is defined by:
 \begin{equation}
@@ -196,7 +204,7 @@ v_{\varphi}(\xi,\omega) = \frac{\omega}{\xi}.
 \vskip8mm
 
 \begin{example}
-A general formula for the group velocity can be established by differentiating implicitly each side of (\ref{eq:dispersion_relation_LW}) \cite{Sengupta:2004,Trefethen:1982,Trefethen:1996}:
+A general formula for the group velocity can be established by differentiating implicitly each side of (\ref{eq:tan_dispersion_relation_LW}) \cite{Sengupta:2004,Trefethen:1982,Trefethen:1996}:
 $$ k \left(1 + \tan^2 (\omega k)\right) d\omega =  \frac{c h \cos (\xi h) d\xi}{1 - c^2 \left\{1-\cos (\xi h) \right\}} + \frac{c^3 h \sin^2 (\xi h) d\xi}{\left( 1 - c^2 \left\{1-\cos (\xi h) \right\}\right)^2}.
 $$
 
@@ -684,6 +692,32 @@ This document has presented both space and time spectral analyses to study numer
 
 %--------------------------------------------------------------------------------------------------
 
+%--------------------------------------------------------------------------------------------------
+% Section n+1 - Annexes
+%==============================
+\appendix
+\section{Document Revision History \label{app:revision}}
+%==============================
+
+This appendix summarises the main revisions of the present report.
+
+\begin{table}[h]
+    \centering
+    \label{tab:revision-history}
+    \begin{tabular}{p{2cm}p{2.5cm}p{8cm}}
+        \toprule
+        \textbf{Version} & \textbf{Date} & \textbf{Comment} \\
+        \midrule
+        1.0 & 2011-01 & Initial report \\
+        1.1 & 2026-08 & Few corrections \\
+        \bottomrule
+    \end{tabular}
+	\caption{Document revision history}
+\end{table}
+
+%--------------------------------------------------------------------------------------------------
+
+\newpage
 \bibliography{NLbiblio}
 \bibliographystyle{elsarticle-harv}
 
