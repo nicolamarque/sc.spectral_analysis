@@ -121,7 +121,7 @@ $$ u(\bsx,t) = u_0(\bsx - \bsa t),$$
 
 \noindent where $u_0(\bsx) = u(\bsx,0)$ is the initial solution. \\
 
-\noindent In this document, we choose $d=1$ and $a>0$ for simplicity. The concepts, presented afterthen, can be generalized to $d>1$, but this introduces new difficulties like anisotropy, which will be mentionned elsewhere. Besides, the discretization of $\Omega$, noted $\mathcal{T}_h$, is made using regular elements, which leads to the mesh size $h = cst$. We note $U^n_j$ the solution of the discretization of Eq.~(\ref{eq:conv_lin}), at the discrete time $t^n = nk$, where $k$ is the time step, and associated with node (or control volume) located at $x_j = jh$. It approximates $u(x_j,t^n)$.The LW differencing scheme is written\cite{Leveque:2002}:
+\noindent In this document, we choose $d=1$ and $a>0$ for simplicity. The concepts, presented hereafter, can be generalized to $d>1$, but this introduces new difficulties like anisotropy, which will be mentioned elsewhere. Besides, the discretization of $\Omega$, noted $\mathcal{T}_h$, is made using regular elements, which leads to the mesh size $h = cst$. We note $U^n_j$ the solution of the discretization of Eq.~(\ref{eq:conv_lin}), at the discrete time $t^n = nk$, where $k$ is the time step, and associated with node (or control volume) located at $x_j = jh$. It approximates $u(x_j,t^n)$. The LW differencing scheme is written\cite{Leveque:2002}:
 \begin{equation}
 \label{eq:LW}
 U_{j}^{n+1} = U_{j}^{n} - \frac{1}{2} c \left(U_{j+1}^{n} - U_{j-1}^{n}\right) + \frac{1}{2} c^2 \left(U_{j+1}^{n} - 2 U_{j}^{n} + U_{j-1}^{n}\right),
@@ -137,7 +137,7 @@ Z U_{j}^{n}  = \left\{ I - \frac{c}{2} \left(E - E^{-1}\right) + \frac{1}{2} c^2
 \noindent where we have introduced the identity $I$, space- $E$ and time-shift $Z$ operators, and: \\
 $$U_{j}^{n} = I U_{j}^{n}, \quad\quad  U_{j+1}^{n} = E U_{j}^{n},  \quad\quad U_{j}^{n+1} = Z U_{j}^{n}.$$
 
-\noindent The CFL (Courant-Friedrichs-Lewy) number $c$ , is used as a parameter to study the stability of the convection schemes and is defined by:
+\noindent The CFL (Courant-Friedrichs-Lewy) number $c$ is used as a parameter to study the stability of the convection schemes and is defined by:
 $$c = \frac{a k}{h} \, .$$
 
 \noindent The LW scheme is second-order accurate both in space and time, and is $L^2 \ \mathrm{stable}$ provided $c \leq 1$ \cite{Hirsch:1988}. In the present document, we write: $\i = \sqrt{-1}$.
@@ -182,8 +182,8 @@ The dispersion relation of the LW scheme can be obtained from:
 
 \vskip8mm
 
-\noindent As explained in \cite{Trefethen:1982}, as the grid is discrete, the dispersion relations like Eq.~(\ref{eq:tan_dispersion_relation_LW}) are multipled-valued and $2\pi$-periodic in $\xi h$ and $\omega k$. In practice and when needed, the relevant branch is chosen by continuity with the low-frequency limit $\omega k \sim c\,\xi h$. 
-From Eq.~(\ref{eq:tan_dispersion_relation_LW}), it can be seen with the LW scheme, the dispersion relation related to a numerical scheme is a good approximation of Eq.~(\ref{eq:DR}) when $\xi,\omega\rightarrow 0$. On the other hand, it is also a formula involving trigonometric functions. Thus, the relation between $\xi$ and $\omega$ is no more linear and the scheme is said to be \emph{dispersive}. Indeed, essential propagation properties will depend on the pulsation or the wavenumber. 
+\noindent As explained in \cite{Trefethen:1982}, as the grid is discrete, the dispersion relations like Eq.~(\ref{eq:tan_dispersion_relation_LW}) are multivalued and $2\pi$-periodic in $\xi h$ and $\omega k$. In practice and when needed, the relevant branch is chosen by continuity with the low-frequency limit $\omega k \sim c\,\xi h$. 
+From Eq.~(\ref{eq:tan_dispersion_relation_LW}), it can be seen with the LW scheme, the dispersion relation related to a numerical scheme is a good approximation of Eq.~(\ref{eq:DR}) when $\xi h,\omega k \rightarrow 0$. On the other hand, it is also a formula involving trigonometric functions. Thus, the relation between $\xi$ and $\omega$ is no more linear and the scheme is said to be \emph{dispersive}. Indeed, essential propagation properties will depend on the pulsation or the wavenumber. 
 
 \noindent The \emph{phase velocity} is the propagation speed of wave crests within a wave and is defined by:
 \begin{equation}
@@ -197,9 +197,9 @@ v_{\varphi}(\xi,\omega) = \frac{\omega}{\xi}.
 \mathcal{V}_{g}(\xi,\omega) = \frac{d\omega}{d\xi}.
 \end{equation}
 
-\noindent As Eq.~(\ref{eq:conv_lin}) is non-dispersive, those two velocities do not depend on $k$ and are equal to the convection velocity $v_{\varphi} = \mathcal{V}_{g} = a$. Of course, this is not the case of most difference approximations. Dispersion errors imply that wavepacket components will not propagate at the same speed and will be gradually separated , leading to a (sometimes dramatic) shape deformation of the initial signal \cite{Trefethen:1996}.
+\noindent As Eq.~(\ref{eq:conv_lin}) is non-dispersive, those two velocities do not depend on $\xi$ or $\omega$ and are equal to the convection velocity $v_{\varphi} = \mathcal{V}_{g} = a$. Of course, this is not the case of most difference approximations. Dispersion errors imply that wavepacket components will not propagate at the same speed and will be gradually separated, leading to a (sometimes dramatic) shape deformation of the initial signal \cite{Trefethen:1996}.
 
-\noindent It should be mentionned here that the group velocity theory is only valid for \emph{non-dissipative} media or in the limit of \emph{vanishing viscosity}, e.g for $\xi,\omega \in \mathbb{R}$. Any numerical diffusion introduces a frequency-dependent damping of Fourier components. The analysis is then more complicated. The wavepacket amplitude not only varies because of constructive/destructive interferences, but also due to diffusion. Nevertheless, when dispersion dominates, the predictions remain valid, at least for low-frequencies \cite{Trefethen:1982}. 
+\noindent It should be mentioned here that the group velocity theory is only valid for \emph{non-dissipative} media or in the limit of \emph{vanishing viscosity}, e.g for $\xi, \omega \in \mathbb{R}$. Any numerical diffusion introduces a frequency-dependent damping of Fourier components. The analysis is then more complicated. The wavepacket amplitude not only varies because of constructive/destructive interferences, but also due to diffusion. Nevertheless, when dispersion dominates, the predictions remain valid, at least for low frequencies \cite{Trefethen:1982}. 
 
 \vskip8mm
 
@@ -217,9 +217,9 @@ $$
 
 \vskip8mm
 
-\noindent Clearly, the relation between $\xi$ and $\omega$ is non-linear in Eq.~(\ref{eq:gen_group_vel_LW}). The interest of a formulae like (\ref{eq:dispersion_relation_LW}) and (\ref{eq:gen_group_vel_LW}) is also to treat separately the effects of space- and time-diffencing \cite{Trefethen:1982}. In what follows, however, we present other ways to derive dispersion relations and group velocities, which can be viewed as special cases of what has been presented so far. Their interest is that they are more common, rely on very well known tools or introduce some concepts more easily, in the author's opinion. \\
+\noindent Clearly, the relation between $\xi$ and $\omega$ is non-linear in Eq.~(\ref{eq:gen_group_vel_LW}). The interest of a formulae such as (\ref{eq:tan_dispersion_relation_LW}) and (\ref{eq:gen_group_vel_LW}) is also to treat separately the effects of space and time diffencing \cite{Trefethen:1982}. In what follows, however, we present other ways to derive dispersion relations and group velocities, which can be viewed as special cases of what has been presented so far. Their interest is that they are more common, rely on very well-known tools or introduce some concepts more easily, in the author's opinion. \\
 
-\noindent The first one is based on \emph{space Fourier analysis} and \emph{the Cauchy problem} (\ref{eq:conv_lin}), e.g on an unbounded domain. Given a real wavenumber $\xi \in \mathbb{R}$ (an oscillation in space), one can determine the corresponding amplification factor, in the frame of the \emph{Von Neumann method} \cite{Hirsch:1988}. Then, a complex dispersion relation of the form: $\Sigma^{\star}(\xi) -\i \Omega^{\star}(\xi) \in \mathbb{C}$ can be deduced, where the $\star$ denotes the value provided by the numerical scheme. This first strategy is an efficient and classical tool in numerical analysis. It is often enough to get a good insight into a discretization. Nevertheless, for problems involving \emph{mesh refinement} or \emph{bounded domains}, a second analysis based on \emph{time Fourier transforms} has to be used and enables to introduce even more concepts \cite{Vichnevetsky:1982}. Another complex dispersion relation can also written $M^{\star}(\omega) - i K^{\star}(\omega) \in \mathbb{C}$ in this case, with $\omega \in \mathbb{R}$.  
+\noindent The first one is based on \emph{space Fourier analysis} and \emph{the Cauchy problem} (\ref{eq:conv_lin}), e.g on an unbounded domain. Given a real wavenumber $\xi \in \mathbb{R}$ (an oscillation in space), one can determine the corresponding amplification factor, in the frame of the \emph{Von Neumann method} \cite{Hirsch:1988}. Then, a complex dispersion relation of the form: $\Sigma^{\star}(\xi) -\i \Omega^{\star}(\xi) \in \mathbb{C}$ can be deduced, where the $\star$ denotes the value provided by the numerical scheme. This first strategy is an efficient and classical tool in numerical analysis. It is often enough to get a good insight into a discretization. Nevertheless, for problems involving \emph{mesh refinement} or \emph{bounded domains}, a second analysis based on \emph{time Fourier transforms} has to be used and enables to introduce even more concepts \cite{Vichnevetsky:1982}. Another complex dispersion relation can also be written $M^{\star}(\omega) - i K^{\star}(\omega) \in \mathbb{C}$ in this case, with $\omega \in \mathbb{R}$.  
 
 
 %--------------------------------------------------------------------------------------------------
