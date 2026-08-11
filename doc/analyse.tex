@@ -425,7 +425,7 @@ We have shown that space Fourier transforms are very useful to study wave propag
 %--------------
 % sub 4.1
 \subsection{Characteristic equation and dispersion relations}
-Let suppose that $U_j$ is a function with a finite norm, so that it can be expressed using (discrete) time Fourier transforms:
+Let us suppose that $U_j$ is a sequence with a finite norm, so that it can be expressed using (discrete) time Fourier transforms:
 $$  U^n_j = \int_{-\pi/k}^{\pi/k} \breve{U}_j(\omega) e^{\i \omega n k} \frac{d\omega}{2\pi}, $$
 
 \noindent and:
@@ -434,7 +434,7 @@ $$ \breve{U}_j(\omega) = k \sum_{-\infty}^{+\infty} U^n_j e^{-\i \omega n k }.$$
 \noindent Following the methodology of \cite{Vichnevetsky:1982} and using the time Fourier transform\footnote{It is worth recalling $\breve{Z}=e^{\i \omega k}$.}, the \emph{characteristic equation} of a difference scheme can be obtained:
 $$ f(c,\omega k,\breve{E},\breve{E}^2,\breve{Z},\dots ) = 0.$$
 
-\noindent The characteristic equation has generally \emph{several roots} $\breve{E}_{\alpha}$ and the time Fourier transform of the solution is composed with several components:
+\noindent The characteristic equation has generally \emph{several roots} $\breve{E}_{\alpha}$ and the time Fourier transform of the solution is composed of several components:
 $$  \breve{U}_j (\omega) = \sum_{\alpha} \breve{\phi}_{j,\alpha}(\omega) = \sum_{\alpha} \breve{\phi}_{0,\alpha} \left[\breve{E}_{\alpha}(\omega)\right]^j, $$
 
 
@@ -444,22 +444,22 @@ $$  \breve{U}_j (\omega) = \sum_{\alpha} \breve{\phi}_{j,\alpha}(\omega) = \sum_
 \i \omega \breve{u} + a \ddx{\breve{u}} = 0,
 \end{equation}
 
-\noindent Then $\breve{u}(x_{j+1})/\breve{u}(x_{j})=\exp \left(-\i \omega x / a\right)$. As the dispersion relation of Eq.~(\ref{eq:conv_lin}) is $\xi=K(\omega)=\omega / a$, then the exact space-shift operator\footnote{Sometimes called \emph{space} amplification factor.} is $\breve{E}^{ex} = \exp \left(-\i \xi h \right)$.
+\noindent Then $\breve{u}(x_{j+1})/\breve{u}(x_{j})=\exp \left(-\i \omega h / a\right)$. As the dispersion relation of Eq.~(\ref{eq:conv_lin}) is $\xi=K(\omega)=\omega / a$, then the exact space-shift operator\footnote{Sometimes called \emph{space} amplification factor.} is $\breve{E}^{ex} = \exp \left(-\i \xi h \right)$.
 
-\noindent Similarly to the work done with space Fourier transforms, we can introduce \emph{modified pulsation, wavenumber, phase and group velocities}, writting:
+\noindent Similarly to the work done with space Fourier transforms, we can introduce \emph{modified pulsation, wavenumber, phase and group velocities}, writing:
 \begin{equation}
 \label{eq:E_omega}
 \breve{E}(\omega) = e^{\tau^{\star} h} = e^{\mu^{\star}h -\i \ \xi^{\star} h}.
 \end{equation}
 
-\noindent Eq.~(\ref{eq:E_omega}) allows to write a functional:
+\noindent Eq.~(\ref{eq:E_omega}) allows one to define the functional:
 $$ \begin{array}{rcl}
    K^{\star}:\mathbb{R} &\longrightarrow& \mathbb{C} \\
    \omega &\longmapsto& T^{\star}(\omega) = M^{\star}(\omega) - i K^{\star}(\omega) = \mu^{\star}- \i \xi^{\star}, .    
    \end{array}
 $$
 
-\noindent which is the dispersion relation of the root $\breve{E}$. By analogy with section~\ref{sec:space}, $\xi^\star$ is to be compared with the real wavenumber and holds \emph{the phase errors} of the scheme, while $\Im \left(\xi^\star \right)$ is linked with the numerical diffusion. Therefore, the real part of $K^{\star}$ is the modified dispersion relation.
+\noindent which is the dispersion relation of the root $\breve{E}$. By analogy with section~\ref{sec:space}, $\xi^\star$ is to be compared with the real wavenumber and encodes \emph{the phase errors} of the scheme, while $\Im \left(\xi^\star \right)$ is linked with the numerical diffusion. Therefore, the real part of $K^{\star}$ is the modified dispersion relation.
 
 \noindent The modified dispersion relation also leads to the definitions:
 \begin{eqnarray}
@@ -468,7 +468,7 @@ $$
 \label{eq:vphi_omega}
 v_{\varphi}^{\star}(\omega) &=& \omega / K^{\star}(\omega) = - \frac{a \omega k}{c} \left\{\arctan\left(\frac{\Im (\breve{E})}{\Re (\breve{E})}\right)\right\}^{-1} \\
 \label{eq:vg_omega}
-\mathcal{V}^{\star}_{g}(\omega) &=& \frac{a}{(\partial \omega^{\star} / \partial \omega)}.
+\mathcal{V}^{\star}_{g}(\omega) &=& \left(\frac{dK^\star}{d\omega}\right)^{-1} = \frac{a}{(\partial \omega^{\star} / \partial \omega)}.
 \end{eqnarray}
 
 \noindent From relation (\ref{eq:kstar_omega}), one can also calculate wavelengths associated with a pulsation $\omega$:
@@ -492,20 +492,20 @@ $$ \breve{E}_{p/q} = \frac{-b(\omega) \pm \sqrt{\Delta(\omega)}}{2},$$
 \noindent with:
 $$ \Delta(\omega) = {b(\omega)}^2 - 4 \ \frac{c+1}{c-1}.$$
 
-\noindent It means there is two kind of waves, which can propagate and the time Fourier transform of the solution is:
+\noindent It means there are two kinds of waves, which can propagate and the time Fourier transform of the solution is:
 $$ \breve{u}_j (\omega) = \breve{p}_j (\omega) + \breve{q}_j (\omega),$$
 
 \noindent such that:
 $$\begin{array}{ccc}
    \breve{p}_j &=& \breve{p}_0 \left[\breve{E}_{p}\right]^j \\
-   \breve{q}_j &=& \breve{q}_0 \left[\breve{E}_{s}\right]^j \\
+   \breve{q}_j &=& \breve{q}_0 \left[\breve{E}_{q}\right]^j \\
   \end{array}
 $$
 \end{example}
 
 \vskip8mm
 
-\noindent In comparison with the space Fourier transforms, the main advantage is to highlight that there exists several waves associated with the scheme. For instance, in the case of the LW scheme, there are two waves for a given pulsation $\omega$. This is due to the fact that a three-point explicit scheme has a quadratic characteristic equation. The first one, corresponding to the well-resolved wavenumbers, are named {\it p-waves} or physical / smooth waves. Their group velocity is such that $a~\mathcal{V}_g^{\star} > 0$. On the other hand, there are also badly-resolved harmonics and can be called {\it q-waves} or spurious / saw-tooth waves. Their group velocity is such that $a~\mathcal{V}_g^{\star} < 0$. Thus, they propagate upstream, which is wrong and explains their name. As in the case of space analysis, we can introduce the definitions:
+\noindent In comparison with the space Fourier transforms, the main advantage is to highlight that there exists several waves associated with the scheme. For instance, in the case of the LW scheme, there are two waves for a given pulsation $\omega$. This is due to the fact that a three-point explicit scheme has a quadratic characteristic equation. The first ones, corresponding to the well-resolved wavenumbers, are named {\it p-waves} or physical / smooth waves. Their group velocity is such that $a~\mathcal{V}_g^{\star} > 0$. On the other hand, there are also badly resolved harmonics and can be called {\it q-waves} or spurious / saw-tooth waves. Their group velocity is such that $a~\mathcal{V}_g^{\star} < 0$. Thus, they propagate upstream, which is wrong and explains their name. As in the case of space analysis, we can introduce the definitions:
 
 \begin{definition}
 \label{def:root}
@@ -516,6 +516,7 @@ $$
 \end{itemize}
 \end{definition}
 
+
 \vskip8mm
 
 \noindent This definition is to be carefully used when the difference approximation is dissipative, as it is discussed in paragraph~\ref{sec:cutoff}.
@@ -523,7 +524,7 @@ $$
 \vskip8mm
 
 \begin{example}
-\noindent Figures~(\ref{fig:lw_omega}), (\ref{fig:lw_lambdastar_omega}) and (\ref{fig:lw_vgtime}) display an example of modified pulsation, wavelenghts and group velocities for the LW scheme for a CFL number of $c=0.1$. Again, there is two solutions for a given pulsation. As far as the {\it p-wave} is concerned, the LW scheme has a satisfactory behavior for smaller pulsations. $\omega^{\star}$ is close to $\omega$, waves are well-represented ($\lambda^{\star} \approx \lambda$) and propagate at the right velocity ($\mathcal{V}_g^{\star} / a \rightarrow 1$). At the same time, the {\it q-wave}, badly-resolved (close to $2h$), also exists for the same pulsations and propagate in the opposite direction. As pulsation goes bigger, phase errors are more sensible and the behavior of both waves gets closer.
+\noindent Figures~(\ref{fig:lw_omega}), (\ref{fig:lw_lambdastar_omega}) and (\ref{fig:lw_vgtime}) display an example of modified pulsation, wavelenghts and group velocities for the LW scheme for a CFL number of $c=0.1$. Again, there is two solutions for a given pulsation. As far as the {\it p-wave} is concerned, the LW scheme has a satisfactory behavior for lower pulsations. $\omega^{\star}$ is close to $\omega$, waves are well-represented ($\lambda^{\star} \approx \lambda$) and propagate at the right velocity ($\mathcal{V}_g^{\star} / a \rightarrow 1$). At the same time, the {\it q-wave}, badly-resolved (close to $2h$), also exists for the same pulsations and propagates in the opposite direction. As pulsation goes bigger, phase errors are more sensible and the behavior of both waves gets closer.
 
 \begin{figure}[h!]
 \centering
@@ -535,7 +536,7 @@ $$
 \begin{figure}[h!]
 \centering
 \includegraphics[width=100mm]{Images/lw_tf_lambda.png}
-\caption{Modified wavelenghts of the LW scheme depending on the pulsation $\omega$. Black line: exact. Green line: {\it p-waves}. Red line: {\it q-waves}. CFL number is $c=0.1$. Dashed lines are, in this case, evanescent solutions.}
+\caption{Modified wavelengths of the LW scheme depending on the pulsation $\omega$. Black line: exact. Green line: {\it p-waves}. Red line: {\it q-waves}. CFL number is $c=0.1$. Dashed lines are, in this case, evanescent solutions.}
 \label{fig:lw_lambdastar_omega}
 \end{figure}
 
@@ -553,8 +554,8 @@ $$
 %--------------
 % sub 4.2
 \subsection{Diffusion errors}
-As mentionned in section~\ref{sec:space}, most numerical schemes introduce diffusion errors. Indeed, as soon as $\mu^{\star}$ is not zero, the corresponding root is diffused or anti-diffused.
-\noindent Suppose that $a>0$. If $u~\mathcal{V}^{\star}_{g}$ is positive, this is a physical wave and:
+As mentioned in section~\ref{sec:space}, most numerical schemes introduce diffusion errors. Indeed, as soon as $\mu^{\star}$ is not zero, the corresponding root is diffused or anti-diffused.
+\noindent We suppose $a>0$. If $a \, \mathcal{V}^{\star}_{g}$ is positive, this is a physical wave and:
 \begin{itemize}
 \item $\mu^{\star} = 0$, the scheme is non-dissipative.
 \item if $\exists ~\omega$ such that $\mu^{\star} > 0$, the scheme is unstable.
@@ -563,13 +564,13 @@ As mentionned in section~\ref{sec:space}, most numerical schemes introduce diffu
 
 \noindent Inversely, if $a~\mathcal{V}^{\star}_{g}$ is negative, this is a spurious wave. Then it moves in the wrong direction and:
 \begin{itemize}
-\item $\mu^{\star} = 0 = 0$, the scheme is non-dissipative.
-\item if $\exists ~\omega$ such that $\mu^{\star} = 0 < 0$, the scheme is unstable.
-\item if $\exists ~\omega$ such that $\mu^{\star} = 0 > 0$, the scheme is dissipative.
+\item $\mu^{\star} = 0$, the scheme is non-dissipative.
+\item if $\exists ~\omega$ such that $\mu^{\star} < 0$, the scheme is unstable.
+\item if $\exists ~\omega$ such that $\mu^{\star} > 0$, the scheme is dissipative.
 \end{itemize}
 
 \begin{example}
-Figure~(\ref{fig:mod_lw}) shows the modulus of the LW scheme characteristic equation roots $\breve{E}_{p/s}$ for a CFL number $c=0.1$. Using Fig.~(\ref{fig:lw_lambdastar_omega}), we can see that the smooth waves are slowly diffused, until $\lambda \approx 5-10 h$.  On the other hand, all the spurious waves (red line) are diffused at this CFL number. Beyond a cut-off frequency $\omega k / c \approx 1.4$, solutions are very rapidly dissipated and are refered as evanescent solutions (dashed lines on the figures).
+Figure~(\ref{fig:mod_lw}) shows the modulus of the LW scheme characteristic equation roots $\breve{E}_{p/s}$ for a CFL number $c=0.1$. Using Fig.~(\ref{fig:lw_lambdastar_omega}), we can see that the smooth waves are slowly diffused, until $\lambda \approx 5-10 h$.  On the other hand, all the spurious waves (red line) are diffused at this CFL number. Beyond a cut-off frequency $\omega k / c \approx 1.4$, solutions are very rapidly dissipated and are referred as evanescent solutions (dashed lines on the figures).
 \end{example}
 
 \vskip8mm
@@ -586,11 +587,11 @@ Figure~(\ref{fig:mod_lw}) shows the modulus of the LW scheme characteristic equa
 %--------------
 % sub 4.3
 \subsection{Evanescent solutions and cut-off frequency \label{sec:cutoff}}
-\noindent We finally give a brief discussion about evanescent solutions and the definition of {\it p-} and {\it q-waves}. Using LW as the reference, we only consider difference scheme with a quadratic characteristic equation, but this can be generalized for higher-order equations.
+\noindent We finally give a brief discussion about evanescent solutions and the definition of {\it p-} and {\it q-waves}. Using LW as the reference, we only consider difference schemes with a quadratic characteristic equation, but this can be generalized for higher-order equations.
 
-\noindent In the examples given above (see Figs.~(\ref{fig:lw_omega})-(\ref{fig:lw_vgtime})), some part of the solutions are indicated with dashed lines. Going from a continuous to a dash line corresponds to a rapid change of behavior, as $\omega k / c$ grows. The sign of group velocity changes, $|E|$ goes from a value bigger ({\it resp.} smaller) to a value smaller ({\it resp.} bigger) than 1. This change occurs at the same value of $\omega k / c$ for both roots\footnote{In the case of a quadratic characteristic equation.}. The dashed part of the roots of Eq.~(\ref{eq:LW_eq_carac}) are strongly damped for $c=0.1$. It is then straightforward to define a cut-off frequency $\omega ~|~\omega^{\star}_p = \omega^{\star}_q$. Pulsating at a frequency beyond this limit results in no wave in the domain. This phenomenon is even clearer with a non-dssipative scheme, as highlighted by Vichnevetsky and Bowles \cite{Vichnevetsky:1982}, for the second-order centred scheme. In such a case, solutions are evanescent beyond the cuf-off frequency. Those similar behaviors are not surprising as the LW scheme is hardly dissipative and close to the second-order centred scheme, for $c \rightarrow 0$. 
+\noindent In the examples given above (see Figs.~(\ref{fig:lw_omega})-(\ref{fig:lw_vgtime})), some part of the solutions are indicated with dashed lines. Going from a continuous to a dashed line corresponds to a rapid change of behavior, as $\omega k / c$ grows. The sign of group velocity changes, $|E|$ goes from a value bigger ({\it resp.} smaller) to a value smaller ({\it resp.} bigger) than 1. This change occurs at the same value of $\omega k / c$ for both roots\footnote{In the case of a quadratic characteristic equation.}. The dashed part of the roots of Eq.~(\ref{eq:LW_eq_carac}) are strongly damped for $c=0.1$. It is then straightforward to define a cut-off frequency $\omega ~|~\omega^{\star}_p = \omega^{\star}_q$. Pulsating at a frequency beyond this limit results in no wave in the domain. This phenomenon is even clearer with a non-dissipative scheme, as highlighted by Vichnevetsky and Bowles \cite{Vichnevetsky:1982}, for the second-order centred scheme. In such a case, solutions are evanescent beyond the cut-off frequency. Those similar behaviors are not surprising as the LW scheme is hardly dissipative and close to the second-order centred scheme, for $c \rightarrow 0$. 
 
-\noindent For higher CFL numbers, conclusions are somewhat different, in the case of diffusive schemes, like LW. They remain roughly the same for {\it p-waves} ($a ~\mathcal{V}_{g}^{\star} > 0$ and $\left| E_p\right| \rightarrow 1^-$ for $\omega k / c \rightarrow 0$). However, {\it q-waves} can become evanescent when $\omega k / c \rightarrow 0$ and $a ~\mathcal{V}_{g}^{\star} < 0$ and, on the other hand, scarcely damped as $\omega k / c \rightarrow \pi$ ($\left| E_q\right| \rightarrow 1^-$ and $a ~\mathcal{V}_{g}^{\star} > 0$). As a consequence, all the non-evanescent waves are convected in the right direction and whatever the pulsation, there is a corresponding wave and therefore, no cut-off frequency. Therefore, definition~\ref{def:root} seems to be no more valid, as a root designed as a {\it q-wave}, thus a supposedly spurious wave, can  behave correctly, hence rather as a {\it p-wave}, for high pulsations.
+\noindent For higher CFL numbers, conclusions are somewhat different, in the case of diffusive schemes, like LW. They remain roughly the same for {\it p-waves} ($a ~\mathcal{V}_{g}^{\star} > 0$ and $\left| E_p\right| \rightarrow 1^-$ for $\omega k / c \rightarrow 0$). However, {\it q-waves} can become evanescent when $\omega k / c \rightarrow 0$ and $a ~\mathcal{V}_{g}^{\star} < 0$ and, on the other hand, scarcely damped as $\omega k / c \rightarrow \pi$ ($\left| E_q\right| \rightarrow 1^-$ and $a ~\mathcal{V}_{g}^{\star} > 0$). As a consequence, all the non-evanescent waves are convected in the right direction and whatever the pulsation, there exists a corresponding wave and therefore, no cut-off frequency. Therefore, definition~\ref{def:root} seems to be no more valid, as a root designed as a {\it q-wave}, thus a supposedly spurious wave, can  behave correctly, hence rather as a {\it p-wave}, for high pulsations.
 
 
 %--------------------------------------------------------------------------------------------------
