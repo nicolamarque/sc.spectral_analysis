@@ -235,13 +235,16 @@ We now study the main characteristics of numerical schemes, within the frame of 
 %--------------
 % sub 3.1
 \subsection{Phase errors and propagation velocities}
-Let suppose that $U^n$ is a function with a finite norm, so that it can be expressed using Fourier transforms:
+Let us suppose that $U^n$ is a function with a finite norm, so that it can be expressed using Fourier transforms:
+Let us suppose that the grid function $\{U_j^n\}_{j\in\mathbb{Z}}$ belongs to $\ell^2(\mathbb{Z})$, so that it admits the Fourier representation:
 $$  U^n = \int_{-\infty}^{\infty} \widehat{U}^n(\xi) e^{\i \xi x} \frac{d\xi}{2\pi}, $$
 
 \noindent with $\xi$ the wavenumber and $\i = \sqrt{-1}$. Then, applying a linear finite difference scheme leads, after some manipulations\footnote{Note that $E$ is a Toeplitz operator and $\hat{E}=e^{\i \xi h}$ \cite{Vichnevetsky:1982}}, to:
 $$ U^{n+1}_j = \int_{-\infty}^{\infty} \widehat{U}^n(\xi) g(\xi) e^{\i \xi x_j} \frac{d\xi}{2\pi} .$$
 
-\noindent and $g(\xi) = \widehat{Z} = \widehat{U}^{n+1}(\xi) / \widehat{U}^n(\xi)$ is the \emph{amplification factor} for a given wavenumber $\xi$. On the other hand, the space Fourier transform of Eq.~(\ref{eq:conv_lin}) is:
+\noindent where:
+$$ g(\xi)=\frac{\widehat{U}^{n+1}(\xi)}{\widehat{U}^{n}(\xi)} $$
+is the \emph{amplification factor} with the wavenumber $\xi$. On the other hand, the space Fourier transform of Eq.~(\ref{eq:conv_lin}) is:
 \begin{equation}
 \label{eq:conv_lin_Fourier}
 \ddt{\widehat{u}} + \i \xi a \hat{u} = 0,
@@ -265,7 +268,7 @@ g^{LW}(\xi) = 1 - \i \ c \sin{(\xi h)} - c^2 \left\{1-\cos{(\xi h)}\right\}.
 
 \vskip8mm
 
-\noindent As it can be seen in Eq.~(\ref{eq:g_LW}), when a difference formula is used to approximate Eq.~(\ref{eq:conv_lin}), the pulsation of a harmonic $\xi$ is only an approximation of the real one. Moreover, because in the general case, the difference approximation introduces spurious diffusion Then, the amplicafication factor of a numerical scheme can be written:
+\noindent As can be seen in Eq.~(\ref{eq:g_LW}), when a difference formula is used to approximate Eq.~(\ref{eq:conv_lin}), the pulsation of a harmonic $\xi$ is only an approximation of the real one. Moreover, because in the general case, the difference approximation introduces spurious diffusion. Then, the amplicafication factor of a numerical scheme can be written:
 \begin{equation}
 \label{eq:g}
 g(\xi) = e^{s^{\star} k} = e^{\sigma^{\star}k - \i \omega^{\star} k}.
@@ -274,10 +277,11 @@ g(\xi) = e^{s^{\star} k} = e^{\sigma^{\star}k - \i \omega^{\star} k}.
 \noindent Equation~(\ref{eq:g}) then allows to write the functional: 
 $$ \begin{array}{rcl}
    S^{\star}:\mathbb{R} &\longrightarrow& \mathbb{C} \\
-   \xi &\longmapsto& S^{\star}(\xi) = \Sigma^{\star}(\xi) - \i \Omega^{\star}(\xi) = \sigma^{\star} - \i \omega^{\star} ,    
+   \xi &\longmapsto& S^\star(\xi)=\sigma^\star(\xi)-i\,\omega^\star(\xi) \, , 
    \end{array}
 $$
-\noindent which is the \emph{modified dispersion relation} of the difference scheme. $\omega^{\star}$ is to be compared with the real pulsation and holds the \emph{phase errors}, while $\sigma^{\star}$ is linked with the \emph{numerical diffusion} of the scheme. We can also define the modified wavenumber \cite{Hirsch:1988}:
+
+\noindent which definies the \emph{modified dispersion relation} of the difference scheme. $\omega^{\star}$ is to be compared with the real pulsation and holds the \emph{phase errors}, while $\sigma^{\star}$ is linked with the \emph{numerical diffusion} of the scheme. We can also define the modified wavenumber \cite{Hirsch:1988}:
 \begin{equation}
 \label{eq:kstar}
 \xi^{\star}(\xi) = \frac{\Omega^{\star}(\xi)}{a} ,
@@ -289,7 +293,7 @@ $$
 v_{\varphi}^{\star}(\xi) = \frac{\Omega^{\star}(\xi)}{\xi} .
 \end{equation}
 
-\noindent Furthermore, a cut-off wavenumber can be defined as the maximum wavenumber, which can be represented by the discretization\footnote{The phase error at $\xi=\xi_c$ is often big (up to 50\%). Another definition must be written to better evaluate phase accuracy. See \cite{Bailly:2004}.} and is often far smaller than $\pi / h$:
+\noindent Furthermore, a cut-off wavenumber can be defined as the largest accurately represented wavenumber, which can be represented by the discretization\footnote{The phase error at $\xi=\xi_c$ is often big (up to 50\%). Another definition must be written to better evaluate phase accuracy. See \cite{Bailly:2004}.} and is often far smaller than $\pi / h$:
 $$ \xi_c h = \max_{\xi h} \left( \xi^{\star} h \right).$$
 
 \vskip8mm
@@ -306,7 +310,7 @@ $$ \xi_c h = \max_{\xi h} \left( \xi^{\star} h \right).$$
 \label{eq:kdx_LW}
 \xi^{\star} h = \frac{1}{c} \arctan{\left[\frac{c \sin{(\xi h)}}{1- c^2 \left\{1-\cos{(\xi h)}\right\}}\right]}.
 \end{equation}
-\noindent Figure~(\ref{fig:kdx_lw}) shows the modified wavenumber of the LW scheme for different CFL numbers. The LW scheme has a good phase accuracy for larger wavelengths, but shows a poor behaviour for badly resolved scales, especially for small CFL numbers. It is noteworthy that the LW scheme has no phase error\footnote{No error at all in fact !} for $c=1$. Table~(\ref{tab:kdx_lw}) gathers the cut-off wavenumbers (and the corresponding wavelengths $\lambda=2\pi /\xi$) of the LW scheme, depending on the CFL number. Moreover, wavenumbers $k_a h$, such that:
+\noindent Figure~(\ref{fig:kdx_lw}) shows the modified wavenumber of the LW scheme for different CFL numbers. The LW scheme has a good phase accuracy for longer wavelengths, but shows a poor behavior for badly resolved scales, especially for small CFL numbers. It is noteworthy that the LW scheme has no phase error\footnote{No error at all in fact !} at $c=1$. Table~(\ref{tab:kdx_lw}) gathers the cut-off wavenumbers (and the corresponding wavelengths $\lambda=2\pi /\xi$) of the LW scheme, depending on the CFL number. Moreover, wavenumbers $k_a h$, such that:
 $$ \left|\xi^{\star}(\xi_a)-\xi_a\right|/\xi_a < 0.01$$
 are also added in Tab.~(\ref{tab:kdx_lw}), to assess the phase accuracy.
 \end{example}
@@ -335,27 +339,27 @@ $0.9$ & $\mathit{3.491}$ & $\mathit{1.80}$ & $0.591$ & $10.6$ \\
 \label{tab:kdx_lw}
 \end{table}
 
-\noindent Table~(\ref{tab:kdx_lw}) confirms that phase errors are lower when $c\rightarrow 1$. It also shows that $\xi^{\star}$ is relatively small, compared with $\pi$ (the supposedly maximum non-dimensionalized wavenumber), which is linked with the strong discrepencies of the scheme with small wavelengths. Phase errors are bigger than $1\%$, as soon as the wavelength is smaller than around $20 h$, for a large band of CFL numbers ($c<0.5$). This shows the dispersion errors are non-negligible, even when resolution seems rather correct (15-20 nodes per wavelength).
+\noindent Table~(\ref{tab:kdx_lw}) confirms that phase errors are lower when $c\rightarrow 1$. It also shows that $\xi^{\star}$ is relatively small, compared with $\pi$ (the supposedly maximum non-dimensionalized wavenumber), which is linked with the strong discrepencies of the scheme with small wavelengths. Phase errors are bigger than $1\%$, as soon as the wavelength is smaller than around $20 h$, for a large band of CFL numbers ($c<0.5$). This shows that dispersion errors are non-negligible, even when resolution seems rather correct (15-20 nodes per wavelength).
 
 \vskip8mm
 
-\noindent As said in section~\ref{sec:disper}, group velocity can be used to further describe wave packets and energy transport. Knowing the modified pulsation, the group velocity of the numerical scheme can be calculated the same way as the real one:
+\noindent As said in section~\ref{sec:disper}, group velocity can be used to further describe wave packets and energy transport. Knowing the modified pulsation, the group velocity of the numerical scheme can be calculated in the same way as the exact one:
 \begin{equation}
 \label{eq:vgroup_star}
 \mathcal{V}^{\star}_g (\xi) = \frac{d \omega^{\star}}{d\xi} = a \frac{d\xi^{\star}}{d\xi}.
 \end{equation}
 
-\noindent Depending on the resolution power of the difference schemes, some waves can have an unexpected behaviour. Group velocity is the main tool to discriminate those waves, as it gives information about the way they propagate. The bigger wavelenghts ($\xi h \rightarrow 0$) behaves like physical waves (consistency condition) and moves in the right direction, at the right velocity and dispersion errors are relatively small, especially when a high-order scheme is used. On the other hand, the smaller wavelengths ($\xi h \rightarrow \pi$), which are badly-resolved (only few points), are moving at a wrong speed, in the opposite direction. They can be considered as spurious waves, as they do not follow the physical laws and can threat the computation stability. Several illustrations are provided in \cite{Trefethen:1982,Vichnevetsky:1982}. Vichnevetsky and Bowles \cite{Vichnevetsky:1982} have called the first oscillations {\it p-waves} and the spurious ones {\it q-waves}.
+\noindent Depending on the resolution power of the difference schemes, some waves can have an unexpected behavior. Group velocity is the main tool to discriminate those waves, as it gives information about the way they propagate. The longer wavelenghts ($\xi h \rightarrow 0$) behave like physical waves (consistency condition) and moves in the right direction, at the right velocity and dispersion errors are relatively small, especially when a high-order scheme is used. On the other hand, the smaller wavelengths ($\xi h \rightarrow \pi$), which are badly resolved (only few points), are moving at a wrong speed, in the opposite direction. They can be considered as spurious waves, as they do not follow the physical laws and can threaten the stability of the computation. Several illustrations are provided in \cite{Trefethen:1982,Vichnevetsky:1982}. Vichnevetsky and Bowles \cite{Vichnevetsky:1982} have called the first oscillations {\it p-waves} and the spurious ones {\it q-waves}.
 
 \noindent A good criterion to distinguish waves is thus the sign of the group velocity:
 
 \begin{definition}
-\noindent If the product $a ~\mathcal{V}^{\star}_g < 0$, then the corresponding wave $\xi$ is a spurious one, which is called {\it q-wave}.
+\noindent If the product $a \, \mathcal{V}^{\star}_g < 0$, then the corresponding wave $\xi$ is a spurious one, which is called {\it q-wave}.
 \end{definition}
 
 \vskip8mm
 
-\noindent {\it q-waves} can be very dangerous, as they carry some energy in the wrong direction or be stationnary, can reflect on boundaries and eventually lead to numerical instabilities \cite{Trefethen:1982,Vichnevetsky:1982}.
+\noindent {\it q-waves} can be very dangerous, as they carry some energy in the wrong direction or be stationary, can reflect on boundaries and eventually lead to numerical instabilities \cite{Trefethen:1982,Vichnevetsky:1982}.
 
 \begin{example}
 \noindent The modified group velocity of the LW scheme is:
@@ -363,7 +367,7 @@ $0.9$ & $\mathit{3.491}$ & $\mathit{1.80}$ & $0.591$ & $10.6$ \\
 \label{eq:vgroup_LW}
 \frac{\mathcal{V}^{\star}_g}{a} = \frac{(1-c^2) \cos{(\xi h)} + c^2}{c^2 \sin^2 (\xi h) + \left\{c^2 \cos (\xi h) - c^2 +1 \right\}^2},
 \end{equation}
-\noindent and Figure~(\ref{fig:vg_lw}) displays it for different CFL numbers. As explained above, the scheme behaves rather well for $\xi h \rightarrow 0$, especially for higher CFL numbers. In general, phase errors are very sensible when $\lambda \approx 10-20 h$. When oscillations are smaller than around $4 h$, they are even convected in the wrong direction (especially when the CFL number is small). One should also note that there is no {\it q-waves} at higher CFL numbers (see $c=0.9$).
+\noindent and Figure~(\ref{fig:vg_lw}) displays it for different CFL numbers. As explained above, the scheme behaves rather well for $\xi h \rightarrow 0$, especially for higher CFL numbers. In general, phase errors are very significant when $\lambda \approx 10-20 h$. When oscillations are smaller than around $4 h$, they are even convected in the wrong direction (especially when the CFL number is small). One should also note that there are no {\it q-waves} at higher CFL numbers (see $c=0.9$).
  \end{example}
 
 \begin{figure}[h!]
@@ -377,7 +381,7 @@ $0.9$ & $\mathit{3.491}$ & $\mathit{1.80}$ & $0.591$ & $10.6$ \\
 %--------------
 % sub 3.2
 \subsection{Diffusion errors}
-So far, we have just considered phase errors, but most numerical schemes also introduce diffusion errors, as soon as $\Sigma^{\star}$ is not zero. Indeed, we have:
+So far, we have only considered phase errors, but most numerical schemes also introduce diffusion errors, as soon as $\Sigma^{\star}$ is not zero. Indeed, we have:
 \begin{equation}
 \label{eq:ampli_imomega}
 \left|g(\xi) \right| = \exp \left(\sigma^{\star} k\right).
@@ -390,7 +394,7 @@ So far, we have just considered phase errors, but most numerical schemes also in
  \item if $\exists ~\xi \mathrm{~such~that~} \sigma^{\star} < 0$, the method is dissipative.
 \end{itemize}
 
-\noindent Numerical diffusion implies a decay of wave amplitudes and a smearing of strong gradients. This phenomenon is usually not desirable, for example to simulate turbulence. Nevertheless, it tends to stabilize a numerical method and often eliminates spurious waves, generated by phase errors, Gibbs phenomenon or spurious reflections at interfaces (mesh refinement, boundaries...). However, we recall that the group velocity theory only works in the limit of zero or vanishing viscosity \cite{Trefethen:1982}. Indeed, the amplitude decay is due to two phenomena: diffusion and destructive interferences due to dispersion. Therefore, the amplification factor should just be used to study numerical diffusion of sine waves.
+\noindent Numerical diffusion implies a decay of wave amplitudes and a smearing of strong gradients. This phenomenon is usually not desirable, for example to simulate turbulence. Nevertheless, it tends to stabilize a numerical method and often eliminates spurious waves, generated by phase errors, the Gibbs phenomenon, or spurious reflections at interfaces (mesh refinement, boundaries...). However, we recall that the group velocity theory only works in the limit of zero or vanishing viscosity \cite{Trefethen:1982}. Indeed, the amplitude decay is due to two phenomena: diffusion and destructive interferences due to dispersion. Therefore, the amplification factor should just be used to study numerical diffusion of sine waves.
 
 \vskip8mm
 
@@ -520,7 +524,7 @@ $$
 \vskip8mm
 
 \begin{example}
-\noindent Figures~(\ref{fig:lw_omega}), (\ref{fig:lw_lambdastar_omega}) and (\ref{fig:lw_vgtime}) display an example of modified pulsation, wavelenghts and group velocities for the LW scheme for a CFL number of $c=0.1$. Again, there is two solutions for a given pulsation. As far as the {\it p-wave} is concerned, the LW scheme has a satisfactory behaviour for smaller pulsations. $\omega^{\star}$ is close to $\omega$, waves are well-represented ($\lambda^{\star} \approx \lambda$) and propagate at the right velocity ($\mathcal{V}_g^{\star} / a \rightarrow 1$). At the same time, the {\it q-wave}, badly-resolved (close to $2h$), also exists for the same pulsations and propagate in the opposite direction. As pulsation goes bigger, phase errors are more sensible and the behaviour of both waves gets closer.
+\noindent Figures~(\ref{fig:lw_omega}), (\ref{fig:lw_lambdastar_omega}) and (\ref{fig:lw_vgtime}) display an example of modified pulsation, wavelenghts and group velocities for the LW scheme for a CFL number of $c=0.1$. Again, there is two solutions for a given pulsation. As far as the {\it p-wave} is concerned, the LW scheme has a satisfactory behavior for smaller pulsations. $\omega^{\star}$ is close to $\omega$, waves are well-represented ($\lambda^{\star} \approx \lambda$) and propagate at the right velocity ($\mathcal{V}_g^{\star} / a \rightarrow 1$). At the same time, the {\it q-wave}, badly-resolved (close to $2h$), also exists for the same pulsations and propagate in the opposite direction. As pulsation goes bigger, phase errors are more sensible and the behavior of both waves gets closer.
 
 \begin{figure}[h!]
 \centering
@@ -585,7 +589,7 @@ Figure~(\ref{fig:mod_lw}) shows the modulus of the LW scheme characteristic equa
 \subsection{Evanescent solutions and cut-off frequency \label{sec:cutoff}}
 \noindent We finally give a brief discussion about evanescent solutions and the definition of {\it p-} and {\it q-waves}. Using LW as the reference, we only consider difference scheme with a quadratic characteristic equation, but this can be generalized for higher-order equations.
 
-\noindent In the examples given above (see Figs.~(\ref{fig:lw_omega})-(\ref{fig:lw_vgtime})), some part of the solutions are indicated with dashed lines. Going from a continuous to a dash line corresponds to a rapid change of behaviour, as $\omega k / c$ grows. The sign of group velocity changes, $|E|$ goes from a value bigger ({\it resp.} smaller) to a value smaller ({\it resp.} bigger) than 1. This change occurs at the same value of $\omega k / c$ for both roots\footnote{In the case of a quadratic characteristic equation.}. The dashed part of the roots of Eq.~(\ref{eq:LW_eq_carac}) are strongly damped for $c=0.1$. It is then straightforward to define a cut-off frequency $\omega ~|~\omega^{\star}_p = \omega^{\star}_q$. Pulsating at a frequency beyond this limit results in no wave in the domain. This phenomenon is even clearer with a non-dssipative scheme, as highlighted by Vichnevetsky and Bowles \cite{Vichnevetsky:1982}, for the second-order centred scheme. In such a case, solutions are evanescent beyond the cuf-off frequency. Those similar behaviours are not surprising as the LW scheme is hardly dissipative and close to the second-order centred scheme, for $c \rightarrow 0$. 
+\noindent In the examples given above (see Figs.~(\ref{fig:lw_omega})-(\ref{fig:lw_vgtime})), some part of the solutions are indicated with dashed lines. Going from a continuous to a dash line corresponds to a rapid change of behavior, as $\omega k / c$ grows. The sign of group velocity changes, $|E|$ goes from a value bigger ({\it resp.} smaller) to a value smaller ({\it resp.} bigger) than 1. This change occurs at the same value of $\omega k / c$ for both roots\footnote{In the case of a quadratic characteristic equation.}. The dashed part of the roots of Eq.~(\ref{eq:LW_eq_carac}) are strongly damped for $c=0.1$. It is then straightforward to define a cut-off frequency $\omega ~|~\omega^{\star}_p = \omega^{\star}_q$. Pulsating at a frequency beyond this limit results in no wave in the domain. This phenomenon is even clearer with a non-dssipative scheme, as highlighted by Vichnevetsky and Bowles \cite{Vichnevetsky:1982}, for the second-order centred scheme. In such a case, solutions are evanescent beyond the cuf-off frequency. Those similar behaviors are not surprising as the LW scheme is hardly dissipative and close to the second-order centred scheme, for $c \rightarrow 0$. 
 
 \noindent For higher CFL numbers, conclusions are somewhat different, in the case of diffusive schemes, like LW. They remain roughly the same for {\it p-waves} ($a ~\mathcal{V}_{g}^{\star} > 0$ and $\left| E_p\right| \rightarrow 1^-$ for $\omega k / c \rightarrow 0$). However, {\it q-waves} can become evanescent when $\omega k / c \rightarrow 0$ and $a ~\mathcal{V}_{g}^{\star} < 0$ and, on the other hand, scarcely damped as $\omega k / c \rightarrow \pi$ ($\left| E_q\right| \rightarrow 1^-$ and $a ~\mathcal{V}_{g}^{\star} > 0$). As a consequence, all the non-evanescent waves are convected in the right direction and whatever the pulsation, there is a corresponding wave and therefore, no cut-off frequency. Therefore, definition~\ref{def:root} seems to be no more valid, as a root designed as a {\it q-wave}, thus a supposedly spurious wave, can  behave correctly, hence rather as a {\it p-wave}, for high pulsations.
 
