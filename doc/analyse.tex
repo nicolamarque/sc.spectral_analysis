@@ -235,8 +235,7 @@ We now study the main characteristics of numerical schemes, within the frame of 
 %--------------
 % sub 3.1
 \subsection{Phase errors and propagation velocities}
-Let us suppose that $U^n$ is a function with a finite norm, so that it can be expressed using Fourier transforms:
-Let us suppose that the grid function $\{U_j^n\}_{j\in\mathbb{Z}}$ belongs to $\ell^2(\mathbb{Z})$, so that it admits the Fourier representation:
+\noindent Let us suppose that the grid function $U^n(x)\in L^2(\mathbb{R})$, so that it admits the Fourier representation:
 $$  U^n = \int_{-\infty}^{\infty} \widehat{U}^n(\xi) e^{\i \xi x} \frac{d\xi}{2\pi}, $$
 
 \noindent with $\xi$ the wavenumber and $\i = \sqrt{-1}$. Then, applying a linear finite difference scheme leads, after some manipulations\footnote{Note that $E$ is a Toeplitz operator and $\hat{E}=e^{\i \xi h}$ \cite{Vichnevetsky:1982}}, to:
