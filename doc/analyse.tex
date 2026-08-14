@@ -610,12 +610,12 @@ Some examples, once again based on the Lax-Wendroff scheme, give a demonstration
 \subsection{Space analysis}
 In this first paragraph, we show the evolution of two wavepackets and a sine wave. The domain $\Omega=(0,1)$ is periodic and meshed with $N_x=100$ points, $a=1$ and $k = 10^{-3}$, so that $c=0.1$. The initial wavepackets are centred around $x=0.5$.
 \begin{itemize}
- \item {\bf Wavepacket A:} The wavepacket has a carrier wave, which wavenumber is $\xi h = \pi / 5$. After 1000 iterations ($t=1$), the packet is ideally supposed to superimpose with the initial solution.
- \item {\bf Wavepacket B:} The wavepacket has a carrier wave, which wavenumber is $\xi h = \pi$. After 100 iterations ($t=0.1$), the packet should be centred around $x=0.6$.
- \item {\bf Signal C:} We also show that space analysis predicts amplitude errors, as well. As the study of wavepackets is not stricly suitable to evaluate dissipative effects \footnote{As it has been recalled in sections~\ref{sec:disper} and \ref{sec:space}, even though the group velocity theory works very well in the limit of vanishing viscosity \cite{Karni:1994}, it is only valid, stricly speaking, when there is no dissipation. The dispersion effects make it hard to see if an amplitude decrease is due to diffusion or destructive interferences.}, we use a sinusoidal periodic signal with a wavenumber $\xi h = \pi / 10$. 
+ \item {\bf Wavepacket A:} The wavepacket has a carrier wave, whose wavenumber is $\xi h = \pi / 5$. After 1000 iterations ($t=1$), the packet is ideally supposed to superimpose with the initial solution.
+ \item {\bf Wavepacket B:} The wavepacket has a carrier wave, whose wavenumber is $\xi h = \pi$. After 100 iterations ($t=0.1$), the packet should be centred around $x=0.6$.
+ \item {\bf Signal C:} We also show that space analysis predicts amplitude errors, as well. As the study of wavepackets is not strictly suitable to evaluate dissipative effects \footnote{As it has been recalled in sections~\ref{sec:disper} and \ref{sec:space}, even though the group velocity theory works very well in the limit of vanishing viscosity \cite{Karni:1994}, it is only valid, strictly speaking, when there is no dissipation. The dispersion effects make it hard to see if an amplitude decrease is due to diffusion or destructive interferences.}, we use a sinusoidal periodic signal with a wavenumber $\xi h = \pi / 10$. 
 \end{itemize}
 
-\noindent {\bf Case A:} Figure~(\ref{fig:waveA}) shows the wavepacket after, supposedly, 1 turn ($t=1$). Actually, as the associated group velocity is less than 1, it is not superimposed with the initial solution. There is a space shift and the wavepacket is centred around $x=0.3$, which means its propagation velocity has been around 0.8. This value is consistant with theory, as Eq.~(\ref{eq:vgroup_LW}) gives the group velocity: $\mathcal{V}_g^{\star} (\pi/5) \approx 0.81$ (with a CFL number of 0.1). 
+\noindent {\bf Case A:} Figure~(\ref{fig:waveA}) shows the wavepacket after, supposedly, 1 turn ($t=1$). Actually, as the associated group velocity is less than 1, it is not superimposed with the initial solution. There is a space shift and the wavepacket is centred around $x=0.3$, which means its propagation velocity has been around 0.8. This value is consistent with theory, as Eq.~(\ref{eq:vgroup_LW}) gives the group velocity: $\mathcal{V}_g^{\star} (\pi/5) \approx 0.81$ (with a CFL number of 0.1). 
 
 \begin{figure}[h!]
 \centering
@@ -624,7 +624,7 @@ In this first paragraph, we show the evolution of two wavepackets and a sine wav
 \label{fig:waveA}
 \end{figure}
 
-\noindent {\bf Case B:} Figure~(\ref{fig:waveB}) shows the wavepacket after, supposedly, 0.1 turn ($t=0.1$). It can be seen that the wavepacket has travelled in the opposite direction and is centred around $x=0.4$. Its propagation velocity has thus been around -1. Again, this value is predicted by theory, as Eq.~(\ref{eq:vgroup_LW}) gives the group velocity: $\mathcal{V}_g^{\star} (\pi) \approx -1$ (with a CFL number of 0.1).  
+\noindent {\bf Case B:} Figure~(\ref{fig:waveB}) shows the wavepacket after, supposedly, 0.1 turn ($t=0.1$). It can be seen that the wavepacket has traveled in the opposite direction and is centred around $x=0.4$. Its propagation velocity has thus been around -1. Again, this value is predicted by theory, as Eq.~(\ref{eq:vgroup_LW}) gives the group velocity: $\mathcal{V}_g^{\star} (\pi) \approx -1$ (with a CFL number of 0.1).  
 
 \begin{figure}[h!]
 \centering
@@ -633,7 +633,7 @@ In this first paragraph, we show the evolution of two wavepackets and a sine wav
 \label{fig:waveB}
 \end{figure}
 
-\noindent {\bf Case C:} Figure~(\ref{fig:diffC}) shows the sine wave after, supposedly, 10 turns ($t=10$). It can be seen that the wave suffers from amplitude and phase errors, but in the present case, we are just interested in the former. The wave amplitude is a bit less than 0.9. From Eq.~(\ref{eq:g_LW}), the amplification factor modulus is $\left| g(\pi / 10) \right| \approx 0.999988 $. Then, after 10000 iterations, the initial wave amplitude is multiplied by 0.888, which corresponds the numerical results. 
+\noindent {\bf Case C:} Figure~(\ref{fig:diffC}) shows the sine wave after, supposedly, 10 turns ($t=10$). It can be seen that the wave suffers from amplitude and phase errors, but in the present case, we are just interested in the former. The wave amplitude is a bit less than 0.9. From Eq.~(\ref{eq:g_LW}), the amplification factor modulus is $\left| g(\pi / 10) \right| \approx 0.999988 $. Then, after 10000 iterations, the initial wave amplitude is multiplied by 0.888, which corresponds to the numerical results. 
 
 \begin{figure}[h!]
 \centering
@@ -643,7 +643,7 @@ In this first paragraph, we show the evolution of two wavepackets and a sine wav
 \end{figure}
 
 
-\noindent This couple of illustrations have shown the interest of spectral analysis in space. It enables to predict the resolution power of a scheme and discriminate physical and spurious waves, depending on phase and group velocities. Moreover, the amount of numerical diffusion introduced by the discretization can also be calculated and $L^2$ stability parameters can be determined. Knowing those main characteristics allows to anticipate many errors when using a numerical scheme. Furtherfore, stabilization or filter operators can be designed to destroy those spurious waves, as it can be seen that their behaviour is non-physical, and often dangerous. 
+\noindent This pair of illustrations has shown the interest of spectral analysis in space. It enables to predict the resolution power of a scheme and discriminate physical and spurious waves, depending on phase and group velocities. Moreover, the amount of numerical diffusion introduced by the discretization can also be calculated and $L^2$ stability parameters can be determined. Knowing those main characteristics allows to anticipate many errors when using a numerical scheme. Furthermore, stabilization or filter operators can be designed to suppress those spurious waves, as it can be seen that their behaviour is non-physical, and often dangerous. 
 %--------------
 
 
@@ -652,11 +652,11 @@ In this first paragraph, we show the evolution of two wavepackets and a sine wav
 \subsection{Time analysis}
 Similarly to the work of \cite{Trefethen:1982}, we introduce a source term at $x=0.5$ to illustrate the use of time Fourier transforms. We study two kind of source terms:
 \begin{itemize}
- \item {\bf Smooth source term D:} The domain is composed with $N_x=200$ knots, the CFL is still $c=0.1$. The source term is defined such that $u(0.5,t)=\sin \left(20 \pi t\right)$, which is $\omega k / c = \pi /10$. After 200 iterations ($t=0.1$), we are supposed to obtain one period of a sine wave, which front has reached $x=0.6$.
+ \item {\bf Smooth source term D:} The domain is composed with $N_x=200$ nodes, the CFL is still $c=0.1$. The source term is defined such that $u(0.5,t)=\sin \left(20 \pi t\right)$, which is $\omega k / c = \pi /10$. After 200 iterations ($t=0.1$), we are supposed to obtain one period of a sine wave, which front has reached $x=0.6$.
  \item {\bf Saw-tooth source term E:} The domain is composed with $N_x=1000$ nodes and is still periodic but also bigger: $\Omega=(0,4)$. The CFL is still $c=0.1$. The source term is such that $u(2,t)=(-1)^n$, then $\omega k / c = 10 \pi $. Thus, it is far greater than the cut-off pulsation. The result is given after 2500 iterations ($t=1$).
 \end{itemize}
 
-\noindent {\bf Case D:} Figure~(\ref{fig:sourceD}) shows the results obtained after 200 iterations, which is one period in time for the source term. It can be seen that there is one period of a smooth sine wave at $x>0.5$, which has travelled at $\mathcal{V}_g^{\star} \approx 1$, as expected by theory. On the other hand, there is also some spurious oscillations at $x<0$, which carrier wavelength is around $2 h$. They have travelled at $\mathcal{V}_g^{\star} \approx -1$, as predicted by theory (see Figs.~(\ref{fig:lw_omega}), (\ref{fig:lw_lambdastar_omega}) and (\ref{fig:lw_vgtime})). One should note that the {\it q-waves} are also strongly dissipated, as it can been shown on Fig.~(\ref{fig:mod_lw}).
+\noindent {\bf Case D:} Figure~(\ref{fig:sourceD}) shows the results obtained after 200 iterations, which is one period in time for the source term. It can be seen that there is one period of a smooth sine wave at $x>0.5$, which has travelled at $\mathcal{V}_g^{\star} \approx 1$, as expected by theory. On the other hand, there are also some spurious oscillations at $x<0$, which carrier wavelength is around $2 h$. They have travelled at $\mathcal{V}_g^{\star} \approx -1$, as predicted by theory (see Figs.~(\ref{fig:lw_omega}), (\ref{fig:lw_lambdastar_omega}) and (\ref{fig:lw_vgtime})). One should note that the {\it q-waves} are also strongly dissipated, as it can be shown on Fig.~(\ref{fig:mod_lw}).
 
 \begin{figure}[h!]
 \centering
@@ -665,7 +665,9 @@ Similarly to the work of \cite{Trefethen:1982}, we introduce a source term at $x
 \label{fig:sourceD}
 \end{figure}
 
-\noindent {\bf Case E:} Figure~(\ref{fig:sourceE}) shows the results obtained after 2500 iterations. Voluntarily, the pulsation was chosen far greater than the cut-off pulsation. As theory predicted, nothing can be seen (evanescent waves), except a transient phenomena (see the oscillations for $x \in (2.5,3)$) and the source term itself at $x=2$. If a zoom is made near the source terms, very small and strongly damped oscillations can be seen each side of the source term, with wavelengths close to $4 h$.
+\noindent {\bf Case E:} Figure~(\ref{fig:sourceE}) shows the results obtained after 2500 iterations. Voluntarily, the pulsation was chosen far greater than the cut-off pulsation. As theory predicted, no propagating wave can be observed (evanescent waves), except a transient phenomenon (see the oscillations for $x \in (2.5,3)$) and the source term itself at $x=2$. 
+% only the source term itself, a transient remnant, and very small strongly damped oscillations remain visible.
+If a zoom is made near the source terms, very small and strongly damped oscillations can be seen on each side of the source term, with wavelengths close to $4 h$.
 
 \begin{figure}[h!]
 \centering
@@ -674,7 +676,7 @@ Similarly to the work of \cite{Trefethen:1982}, we introduce a source term at $x
 \label{fig:sourceE}
 \end{figure}
 
-\noindent Those examples have confirmed the interest of spectral analysis in time. It is probably not to be used as often as space analysis, but the information provided is very precious. Mesh refinement, numerical boundary schemes or the effect of source terms can be studied with this tool. It is thus a good counterpart of space analysis. Moreover, it has the benefit to clearly introduce the notion of characteristic roots and the possible existence of several waves for a given pulsation. 
+\noindent These examples have confirmed the interest of spectral analysis in time. It will probably not to be used as often as space analysis, but the information provided is extremely valuable. Mesh refinement, numerical boundary schemes or the effect of source terms can be studied with this tool. It is thus a good counterpart of space analysis. Moreover, it has the benefit to clearly introduce the notion of characteristic roots and the possible existence of several waves for a given pulsation. 
 %--------------
 
 
@@ -686,13 +688,13 @@ Similarly to the work of \cite{Trefethen:1982}, we introduce a source term at $x
 %==============================
 \section{Conclusion \label{sec:conclusion}}
 %==============================
-This document has presented both space and time spectral analyses to study numerical methods in the frame of the convection-dominated phenomena. As in the works of Vichnevetsky \cite{Vichnevetsky:1982} and Trefethen \cite{Trefethen:1982}, wave propagation definitions, such as the dispersion relation and the group velocity, are introduced and are essential properties to assess a difference scheme. Space analysis is quite classical, as it is closely linked the Von Neumann analysis. The numerical examples given in section~\ref{sec:num_xp} have shown its benefits, especially the use of group velocity to predict the propagation of a wavepacket. 
+This document has presented both space and time spectral analyses to study numerical methods in the framework of the convection-dominated phenomena. As in the works of Vichnevetsky \cite{Vichnevetsky:1982} and Trefethen \cite{Trefethen:1982}, wave propagation concepts, such as the dispersion relation and the group velocity, are introduced and are essential properties to assess a difference scheme. Space analysis is quite classical, as it is closely linked to Von Neumann analysis. The numerical examples given in section~\ref{sec:num_xp} have shown its benefits, especially the use of group velocity to predict the propagation of a wavepacket. 
 
-\noindent On the other hand, time analysis, introduced by Vichnevetsky and Bowles \cite{Vichnevetsky:1982}, is rare and essential yet. Indeed, when the space Fourier transform cannot be used, it is an available and powerful tool. As an example, it enables to determine the group velocities of numerical boundary schemes and thus the spurious reflections at the boundaries \cite{Vichnevetsky:1982}. Another strong argument for time analysis is that Trefethen \cite{Trefethen:1982} has shown the close link between this work due to Vichnevetsky and Bowles \cite{Vichnevetsky:1982} (which gives a physical point of view) and the powerful but complicated \emph{G-K-S (Gustafsson-Kreiss-Sundstr\"om) theory} \cite{GKs:1972} (which is mathematically sound).
+\noindent On the other hand, time analysis, introduced by Vichnevetsky and Bowles \cite{Vichnevetsky:1982}, is rare, yet essential. Indeed, when the space Fourier transform cannot be used, it is an available and powerful tool. As an example, it enables to determine the group velocities of numerical boundary schemes and thus the spurious reflections at the boundaries \cite{Vichnevetsky:1982}. Another strong argument for time analysis is that Trefethen \cite{Trefethen:1982} has shown the close link between the work due to Vichnevetsky and Bowles \cite{Vichnevetsky:1982} (which gives a physical point of view) and the powerful but complicated \emph{G-K-S (Gustafsson-Kreiss-Sundstr\"om) theory} \cite{GKs:1972} (which is mathematically sound).
 
-\noindent Any linear numerical scheme should be first evaluated with, at least, one of these two tools, before being used to solve more complicated problems (several dimensions, non-linear systems...). In no way, spectral analyses will give fully \emph{sufficient} information about stability or errors for those difficult problems. Nevertheless, having good spectral qualities and robustness when solving Eq.~(\ref{eq:conv_lin}) remains a \emph{ necessity}, if the scheme is used to solve accurately, for instance, the convective terms of the Navier-Stokes equations.
+\noindent Any linear numerical scheme should be first evaluated with, at least, one of these two tools, before being used to solve more complicated problems (several dimensions, nonlinear systems, etc). In no way, spectral analyses will give fully \emph{sufficient} information about stability or errors for those difficult problems. Nevertheless, having good spectral qualities and robustness when solving Eq.~(\ref{eq:conv_lin}) remains a \emph{ necessity}, if the scheme is used to solve accurately, for instance, the convective terms of the Navier-Stokes equations.
 
-\noindent Those tools will allow to assess the performances of other schemes, like the Taylor-Galerkin family, in a document to come, and then generalized to realize multi-dimensional domains.
+\noindent Those tools will allow us to assess the performances of other schemes, like the Taylor-Galerkin family, in a document to come, and then generalized to multidimensional domains.
 
 %--------------------------------------------------------------------------------------------------
 
